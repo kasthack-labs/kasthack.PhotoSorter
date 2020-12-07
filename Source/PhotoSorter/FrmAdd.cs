@@ -13,7 +13,11 @@ namespace PhotoSorter {
         }
 
         private void btnBrowse_Click( object sender, EventArgs e ) {
-            if ( fbdPath.ShowDialog() != DialogResult.OK ) return;
+            if ( fbdPath.ShowDialog() != DialogResult.OK )
+            {
+                return;
+            }
+
             txtPath.Text = fbdPath.SelectedPath;
         }
 
