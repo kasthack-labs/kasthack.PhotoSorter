@@ -63,10 +63,7 @@
             }
         }
 
-        public void SetActive(int ind)
-        {
-            this.current = ind;
-        }
+        public void SetActive(int ind) => this.current = ind;
 
         public void SaveMap(string fileName)
         {

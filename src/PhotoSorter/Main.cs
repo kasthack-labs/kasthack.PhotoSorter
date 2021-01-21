@@ -21,10 +21,7 @@
             this.menuMove.Checked = this.core.Move;
         }
 
-        private void MenuExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void MenuExit_Click(object sender, EventArgs e) => Application.Exit();
 
         private void MenuSetWD_Click(object sender, EventArgs e)
         {
@@ -64,10 +61,7 @@
             this.RefreshKeymaps();
         }
 
-        private void RefreshKeymaps()
-        {
-            this.lstMaps.DataSource = this.core.Mappings;
-        }
+        private void RefreshKeymaps() => this.lstMaps.DataSource = this.core.Mappings;
 
         private void BtnDelMap_Click(object sender, EventArgs e)
         {
@@ -157,10 +151,7 @@
         {
         }
 
-        private void LstFiles_KeyDown(object sender, KeyEventArgs e)
-        {
-            e.SuppressKeyPress = true;
-        }
+        private void LstFiles_KeyDown(object sender, KeyEventArgs e) => e.SuppressKeyPress = true;
 
         private void SaveKeymapToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -196,9 +187,6 @@
             }
         }
 
-        private void MenuMove_Click(object sender, EventArgs e)
-        {
-            this.menuMove.Checked = this.core.Move ^= true;
-        }
+        private void MenuMove_Click(object sender, EventArgs e) => this.menuMove.Checked = this.core.Move ^= true;
     }
 }

@@ -11,10 +11,7 @@
             this.cmbKey.DataSource = Enum.GetValues(typeof(Keys));
         }
 
-        private void Cancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
+        private void Cancel_Click(object sender, EventArgs e) => this.DialogResult = DialogResult.Cancel;
 
         private void BtnBrowse_Click(object sender, EventArgs e)
         {
@@ -26,9 +23,6 @@
             this.txtPath.Text = this.fbdPath.SelectedPath;
         }
 
-        private void Ok_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
+        private void Ok_Click(object sender, EventArgs e) => this.DialogResult = DialogResult.OK;
     }
 }
