@@ -11,6 +11,10 @@
 #
 name: "CodeQL"
 
+defaults:
+  run:
+    working-directory: src
+
 on:
   push:
     branches: [ master ]
