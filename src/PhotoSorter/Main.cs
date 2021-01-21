@@ -1,99 +1,111 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-
-namespace PhotoSorter
+﻿namespace PhotoSorter
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
+
     public partial class Main : Form
     {
-        private readonly SortInfo _core;
-        private readonly FrmAdd _dlgAdd;
+        private readonly SortInfo core;
+        private readonly FrmAdd dlgAdd;
 
         public Main()
         {
-            _core = new SortInfo();
-            _dlgAdd = new FrmAdd();
-            InitializeComponent();
+            this.core = new SortInfo();
+            this.dlgAdd = new FrmAdd();
+            this.InitializeComponent();
         }
 
-        private void menuExit_Click(object sender, EventArgs e) => Application.Exit();
-
-        private void menuSetWD_Click(object sender, EventArgs e)
+        public bool Tets
         {
-            if (fbdWd.ShowDialog() != DialogResult.OK)
+            get
+            {
+                return false;
+            }
+        }
+
+        private void MenuExit_Click(object sender, EventArgs e) => Application.Exit();
+
+        private void MenuSetWD_Click(object sender, EventArgs e)
+        {
+            if (this.fbdWd.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
-            _core.WorkingDirectory = fbdWd.SelectedPath;
-            ApplyNewWd();
+            this.core.WorkingDirectory = this.fbdWd.SelectedPath;
+            this.ApplyNewWd();
         }
 
         private void ApplyNewWd()
         {
-            _core.Files = Directory.GetFiles(_core.WorkingDirectory).Select(a => new ProcessFile(a)).ToArray();
-            lstFiles.DataSource = _core.Files;
+            this.core.Files = Directory.GetFiles(this.core.WorkingDirectory).Select(a => new ProcessFile(a)).ToArray();
+            this.lstFiles.DataSource = this.core.Files;
         }
 
-        private void btnAddMap_Click(object sender, EventArgs e)
+        private void BtnAddMap_Click(object sender, EventArgs e)
         {
-            if (_dlgAdd.ShowDialog() != DialogResult.OK)
+            if (this.dlgAdd.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
             var k = new Map
             {
-                Key = (Keys)_dlgAdd.cmbKey.SelectedItem,
-                Path = _dlgAdd.txtPath.Text
+                Key = (Keys)this.dlgAdd.cmbKey.SelectedItem,
+                Path = this.dlgAdd.txtPath.Text,
             };
-            if (!_core.AddMap(k))
+            if (!this.core.AddMap(k))
             {
-                MessageBox.Show("Failed to add map", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _ = MessageBox.Show("Failed to add map", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            RefreshKeymaps();
+
+            this.RefreshKeymaps();
         }
 
-        private void RefreshKeymaps() => lstMaps.DataSource = _core.Mappings;
+        private void RefreshKeymaps() => this.lstMaps.DataSource = this.core.Mappings;
 
-        private void btnDelMap_Click(object sender, EventArgs e)
+        private void BtnDelMap_Click(object sender, EventArgs e)
         {
-            var ms = lstMaps.SelectedIndices.OfType<int>().Reverse().ToArray();
+            var ms = this.lstMaps.SelectedIndices.OfType<int>().Reverse().ToArray();
             foreach (var m in ms)
             {
-                _core.RemoveMap((lstMaps.Items[m] as Map).Key);
+                this.core.RemoveMap((this.lstMaps.Items[m] as Map).Key);
             }
 
-            RefreshKeymaps();
+            this.RefreshKeymaps();
         }
 
-        private void lstFiles_SelectedIndexChanged(object sender, EventArgs e)
+        private void LstFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var ind = lstFiles.SelectedIndex;
-            if (!(lstFiles.Items[ind] is ProcessFile it))
+            var ind = this.lstFiles.SelectedIndex;
+            if (this.lstFiles.Items[ind] is not ProcessFile it)
             {
                 return;
             }
 
             if (it.Deleted)
             {
-                pctView.Image = null;
+                this.pctView.Image = null;
                 return;
             }
-            _core.SetActive(ind);
-            LoadPic(it.Path);
+
+            this.core.SetActive(ind);
+            this.LoadPic(it.Path);
         }
 
         private void LoadPic(string path)
         {
             try
             {
-                pctView.LoadAsync(path);
-                Text = Path.GetFileName(path);
+                this.pctView.LoadAsync(path);
+                this.Text = Path.GetFileName(path);
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+            }
         }
 
         private void ControlKeyDown(object sender, KeyEventArgs e)
@@ -101,58 +113,63 @@ namespace PhotoSorter
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    SF(1);
+                    this.SF(1);
                     break;
                 case Keys.Up:
-                    SF(-1);
+                    this.SF(-1);
                     break;
             }
-            //alt+ctrl hotkeys
+
+            // alt+ctrl hotkeys
             if (e.Modifiers != Keys.None)
             {
                 return;
             }
 
-            if (_core.ProcessKey(e.KeyCode))
+            if (this.core.ProcessKey(e.KeyCode))
             {
-                SF(1);
+                this.SF(1);
                 return;
             }
         }
 
         private void SF(int delta)
         {
-            var qi = lstFiles.SelectedIndex + delta;
-            if (qi < lstFiles.Items.Count && qi >= 0)// && !lstFiles.Focused )
+            var qi = this.lstFiles.SelectedIndex + delta;
+            if (qi < this.lstFiles.Items.Count && qi >= 0)
             {
-                lstFiles.SelectedIndex = qi;
+                this.lstFiles.SelectedIndex = qi;
             }
 
             return;
         }
-        //disable key navigation
-        private void lstMaps_KeyDown(object sender, KeyEventArgs e) { }
-        private void lstFiles_KeyDown(object sender, KeyEventArgs e) => e.SuppressKeyPress = true;
 
-        private void saveKeymapToolStripMenuItem_Click(object sender, EventArgs e)
+        // disable key navigation
+        private void LstMaps_KeyDown(object sender, KeyEventArgs e)
         {
-            if (sfdMap.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            _core.SaveMap(sfdMap.FileName);
         }
 
-        private void loadKeymapToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LstFiles_KeyDown(object sender, KeyEventArgs e) => e.SuppressKeyPress = true;
+
+        private void SaveKeymapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ofdMap.ShowDialog() != DialogResult.OK)
+            if (this.sfdMap.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
-            _core.LoadMap(ofdMap.FileName);
-            RefreshKeymaps();
+            this.core.SaveMap(this.sfdMap.FileName);
+        }
+
+        private void LoadKeymapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ofdMap.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            this.core.LoadMap(this.ofdMap.FileName);
+            this.RefreshKeymaps();
         }
     }
 }
