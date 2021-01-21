@@ -12,6 +12,8 @@
         private readonly Dictionary<Keys, Map> maps = new();
         private int current = -1;
 
+        public bool Move { get; set; } = true;
+
         public string WorkingDirectory { get; set; }
 
         public ProcessFile[] Files { get; set; }
@@ -25,8 +27,20 @@
                 return false;
             }
 
-            var f = this.Files[this.current].Path;
-            File.Move(f, Path.Combine(t.Path, Path.GetFileName(f)));
+            var sourceFile = this.Files[this.current].Path;
+            var targetFile = Path.Combine(t.Path, Path.GetFileName(sourceFile));
+            if (!File.Exists(targetFile))
+            {
+                if (this.Move)
+                {
+                    File.Move(sourceFile, targetFile);
+                }
+                else
+                {
+                    File.Copy(sourceFile, targetFile);
+                }
+            }
+
             return true;
         }
 

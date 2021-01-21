@@ -1,6 +1,7 @@
 ﻿namespace PhotoSorter
 {
     using System;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
@@ -15,14 +16,9 @@
             this.core = new SortInfo();
             this.dlgAdd = new FrmAdd();
             this.InitializeComponent();
-        }
 
-        public bool Tets
-        {
-            get
-            {
-                return false;
-            }
+            // menuMove
+            this.menuMove.Checked = this.core.Move;
         }
 
         private void MenuExit_Click(object sender, EventArgs e) => Application.Exit();
@@ -123,7 +119,10 @@
             // alt+ctrl hotkeys
             if (e.Modifiers != Keys.None)
             {
-                return;
+                if (e.KeyCode == Keys.E && e.Modifiers.HasFlag(Keys.Control))
+                {
+                    Process.Start("explorer", $"/select,\"{(this.lstFiles.Items[this.lstFiles.SelectedIndex] as ProcessFile).Path}\"");
+                }
             }
 
             if (this.core.ProcessKey(e.KeyCode))
@@ -171,5 +170,20 @@
             this.core.LoadMap(this.ofdMap.FileName);
             this.RefreshKeymaps();
         }
+
+        private void LoadCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ofdCsv.ShowDialog() == DialogResult.OK)
+            {
+                this.core.Files = File.ReadAllLines(this.ofdCsv.FileName)
+                    .Select(a => a.Split(',')[0])
+                    .Where(a => File.Exists(a))
+                    .Select(a => new ProcessFile(a))
+                    .ToArray();
+                this.lstFiles.DataSource = this.core.Files;
+            }
+        }
+
+        private void MenuMove_Click(object sender, EventArgs e) => this.menuMove.Checked = this.core.Move ^= true;
     }
 }
