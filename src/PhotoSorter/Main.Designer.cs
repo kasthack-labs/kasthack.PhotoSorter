@@ -87,35 +87,35 @@
             this.menuSetWD.Name = "menuSetWD";
             this.menuSetWD.Size = new System.Drawing.Size(283, 34);
             this.menuSetWD.Text = "Set working directory";
-            this.menuSetWD.Click += new System.EventHandler(this.menuSetWD_Click);
+            this.menuSetWD.Click += new System.EventHandler(this.MenuSetWD_Click);
             // 
             // saveKeymapToolStripMenuItem
             // 
             this.saveKeymapToolStripMenuItem.Name = "saveKeymapToolStripMenuItem";
             this.saveKeymapToolStripMenuItem.Size = new System.Drawing.Size(283, 34);
             this.saveKeymapToolStripMenuItem.Text = "Save keymap";
-            this.saveKeymapToolStripMenuItem.Click += new System.EventHandler(this.saveKeymapToolStripMenuItem_Click);
+            this.saveKeymapToolStripMenuItem.Click += new System.EventHandler(this.SaveKeymapToolStripMenuItem_Click);
             // 
             // loadKeymapToolStripMenuItem
             // 
             this.loadKeymapToolStripMenuItem.Name = "loadKeymapToolStripMenuItem";
             this.loadKeymapToolStripMenuItem.Size = new System.Drawing.Size(283, 34);
             this.loadKeymapToolStripMenuItem.Text = "Load keymap";
-            this.loadKeymapToolStripMenuItem.Click += new System.EventHandler(this.loadKeymapToolStripMenuItem_Click);
+            this.loadKeymapToolStripMenuItem.Click += new System.EventHandler(this.LoadKeymapToolStripMenuItem_Click);
             // 
             // loadCSVToolStripMenuItem
             // 
             this.loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
             this.loadCSVToolStripMenuItem.Size = new System.Drawing.Size(283, 34);
             this.loadCSVToolStripMenuItem.Text = "Load CSV";
-            this.loadCSVToolStripMenuItem.Click += new System.EventHandler(this.loadCSVToolStripMenuItem_Click);
+            this.loadCSVToolStripMenuItem.Click += new System.EventHandler(this.LoadCSVToolStripMenuItem_Click);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
             this.menuExit.Size = new System.Drawing.Size(283, 34);
             this.menuExit.Text = "Exit";
-            this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
+            this.menuExit.Click += new System.EventHandler(this.MenuExit_Click);
             // 
             // menuEdit
             // 
@@ -177,8 +177,8 @@
             this.lstFiles.Name = "lstFiles";
             this.lstFiles.Size = new System.Drawing.Size(284, 424);
             this.lstFiles.TabIndex = 4;
-            this.lstFiles.SelectedIndexChanged += new System.EventHandler(this.lstFiles_SelectedIndexChanged);
-            this.lstFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstFiles_KeyDown);
+            this.lstFiles.SelectedIndexChanged += new System.EventHandler(this.LstFiles_SelectedIndexChanged);
+            this.lstFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LstFiles_KeyDown);
             // 
             // btnAddMap
             // 
@@ -189,7 +189,7 @@
             this.btnAddMap.TabIndex = 3;
             this.btnAddMap.Text = "+";
             this.btnAddMap.UseVisualStyleBackColor = true;
-            this.btnAddMap.Click += new System.EventHandler(this.btnAddMap_Click);
+            this.btnAddMap.Click += new System.EventHandler(this.BtnAddMap_Click);
             // 
             // btnDelMap
             // 
@@ -200,7 +200,7 @@
             this.btnDelMap.TabIndex = 2;
             this.btnDelMap.Text = "-";
             this.btnDelMap.UseVisualStyleBackColor = true;
-            this.btnDelMap.Click += new System.EventHandler(this.btnDelMap_Click);
+            this.btnDelMap.Click += new System.EventHandler(this.BtnDelMap_Click);
             // 
             // lstMaps
             // 
@@ -214,7 +214,7 @@
             this.lstMaps.Size = new System.Drawing.Size(298, 381);
             this.lstMaps.Sorted = true;
             this.lstMaps.TabIndex = 1;
-            this.lstMaps.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstMaps_KeyDown);
+            this.lstMaps.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LstMaps_KeyDown);
             // 
             // lblMaps
             // 
@@ -250,7 +250,7 @@
             this.menuMove.Name = "menuMove";
             this.menuMove.Size = new System.Drawing.Size(270, 34);
             this.menuMove.Text = "Move";
-            this.menuMove.Click += new System.EventHandler(this.menuMove_Click);
+            this.menuMove.Click += new System.EventHandler(this.MenuMove_Click);
             // 
             // Main
             // 
