@@ -121,7 +121,7 @@
             {
                 if (e.KeyCode == Keys.E && e.Modifiers.HasFlag(Keys.Control))
                 {
-                    Process.Start("explorer", $"/select,\"{(this.lstFiles.Items[this.lstFiles.SelectedIndex] as ProcessFile).Path}\"");
+                    _ = Process.Start("explorer", $"/select,\"{(this.lstFiles.Items[this.lstFiles.SelectedIndex] as ProcessFile).Path}\"");
                 }
             }
 
