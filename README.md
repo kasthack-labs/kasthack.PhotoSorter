@@ -1,7 +1,7 @@
 # Photo sorter
-[![Github All Releases](https://img.shields.io/github/downloads/kasthack-labs/PhotoSorter/total.svg)](https://github.com/kasthack-labs/PhotoSorter/releases/latest)
-[![GitHub release](https://img.shields.io/github/release/kasthack-labs/PhotoSorter.svg)](https://github.com/kasthack-labs/PhotoSorter/releases/latest)
-[![license](https://img.shields.io/github/license/kasthack-labs/photosorter.svg)](LICENSE)
+[![Github All Releases](https://img.shields.io/github/downloads/kasthack-labs/kasthack.PhotoSorter/total.svg)](https://github.com/kasthack-labs/kasthack.PhotoSorter/releases/latest)
+[![GitHub release](https://img.shields.io/github/release/kasthack-labs/kasthack.PhotoSorter.svg)](https://github.com/kasthack-labs/kasthack.PhotoSorter/releases/latest)
+[![license](https://img.shields.io/github/license/kasthack-labs/kasthack.photosorter.svg)](LICENSE)
 [![.NET Status](https://github.com/kasthack-labs/kasthack.PhotoSorter/workflows/.NET/badge.svg)](https://github.com/kasthack-labs/kasthack.PhotoSorter/actions?query=workflow%3A.NET)
 [![CodeQL](https://github.com/kasthack-labs/kasthack.PhotoSorter/workflows/CodeQL/badge.svg)](https://github.com/kasthack-labs/kasthack.PhotoSorter/actions?query=workflow%3ACodeQL)
 [![Patreon pledges](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dkasthack%26type%3Dpledges&style=flat)](https://patreon.com/kasthack)
